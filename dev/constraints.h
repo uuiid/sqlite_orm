@@ -159,6 +159,13 @@ namespace sqlite_orm::internal {
     };
 
     template<class T>
+    struct content_rowid_t {
+        using value_type = T;
+
+        value_type value;
+    };
+
+    template<class T>
     struct table_content_t {
         using mapped_type = T;
     };
@@ -657,6 +664,11 @@ SQLITE_ORM_EXPORT namespace sqlite_orm {
      */
     template<class T>
     internal::content_t<T> content(T value) {
+        return {std::move(value)};
+    }
+
+    template<class T>
+    internal::content_rowid_t<T> content_rowid(T value) {
         return {std::move(value)};
     }
 

@@ -24,6 +24,7 @@ namespace sqlite_orm::internal {
                                        check_if_is_template<prefix_t>,
                                        check_if_is_template<tokenize_t>,
                                        check_if_is_template<content_t>,
+                                       check_if_is_template<content_rowid_t>,
                                        check_if_is_template<table_content_t>>,
                       T>::value;
 

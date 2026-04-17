@@ -1571,6 +1571,19 @@ namespace sqlite_orm::internal {
     };
 
     template<class T>
+    struct statement_serializer<content_rowid_t<T>, void> {
+        using statement_type = content_rowid_t<T>;
+
+        template<class Ctx>
+        SQLITE_ORM_STATIC_CALLOP std::string operator()(const statement_type& statement,
+                                                        const Ctx& context) SQLITE_ORM_OR_CONST_CALLOP {
+            std::stringstream ss;
+            ss << "content_rowid=" << serialize(statement.value, context);
+            return ss.str();
+        }
+    };
+
+    template<class T>
     struct statement_serializer<table_content_t<T>, void> {
         using statement_type = table_content_t<T>;
 
